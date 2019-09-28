@@ -1,0 +1,189 @@
+{
+  "allowHttpBackend": false,
+  "backendCommand": "",
+  "backendFolderName": "",
+  "certificateExceptions": [
+    {
+      "isAllowed": false,
+      "isEphemeral": false,
+      "isOrigin": true,
+      "value": "https://localhost:8080"
+    },
+    {
+      "isAllowed": false,
+      "isEphemeral": false,
+      "isOrigin": false,
+      "value": "https://localhost:8080/panel.html?anchor=panel&language=en&locale=en-US&mode=viewer&state=testing&platform=web"
+    }
+  ],
+  "extensionViews": [
+    {
+      "id": "1",
+      "label": "",
+      "channelId": "59757619",
+      "configurationAnchor": "panel",
+      "displayChannelName": "solidghost1",
+      "type": "panel",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "linked": false,
+      "linkedUserId": "",
+      "mode": "viewer",
+      "isPopout": false,
+      "role": "Broadcaster",
+      "orientation": "Portrait",
+      "frameSize": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "id": "2",
+      "label": "",
+      "channelId": "59757619",
+      "configurationAnchor": "panel",
+      "displayChannelName": "solidghost1",
+      "type": "video_overlay",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "linked": false,
+      "linkedUserId": "",
+      "mode": "viewer",
+      "isPopout": false,
+      "role": "Broadcaster",
+      "orientation": "Portrait",
+      "frameSize": {
+        "width": 854,
+        "height": 480
+      }
+    },
+    {
+      "id": "3",
+      "label": "",
+      "channelId": "59757619",
+      "configurationAnchor": "panel",
+      "displayChannelName": "solidghost1",
+      "type": "component",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "linked": false,
+      "linkedUserId": "",
+      "mode": "viewer",
+      "isPopout": false,
+      "role": "Broadcaster",
+      "orientation": "Portrait",
+      "frameSize": {
+        "width": 854,
+        "height": 480
+      }
+    },
+    {
+      "id": "4",
+      "label": "",
+      "channelId": "59757619",
+      "configurationAnchor": "panel",
+      "displayChannelName": "solidghost1",
+      "type": "mobile",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "linked": false,
+      "linkedUserId": "",
+      "mode": "viewer",
+      "isPopout": false,
+      "role": "Broadcaster",
+      "orientation": "Portrait",
+      "frameSize": {
+        "width": 375,
+        "height": 822
+      }
+    }
+  ],
+  "manifest": {
+    "anchor": "panel",
+    "assetUrls": [],
+    "authorName": "",
+    "bitsEnabled": false,
+    "canInstall": true,
+    "configUrl": "http://localhost:8080/config.html",
+    "configurationLocation": "none",
+    "description": "",
+    "eulaTosUrl": "",
+    "hasChatSupport": false,
+    "iconUrl": "",
+    "iconUrls": {},
+    "id": "5oxqoxdo64n50wmvhcofhsmtlbthzf",
+    "installationCount": -42,
+    "liveConfigUrl": "",
+    "name": "hackathon2019",
+    "panelHeight": 300,
+    "privacyPolicyUrl": "",
+    "requestIdentityLink": false,
+    "requiredBroadcasterAbilities": [],
+    "screenshotUrls": [],
+    "sku": "",
+    "state": "Testing",
+    "subscriptionsSupportLevel": "none",
+    "summary": "",
+    "supportEmail": "",
+    "vendorCode": "",
+    "version": "0.0.1",
+    "viewerSummary": "",
+    "viewerUrl": "http://localhost:8080/panel.html",
+    "viewerUrls": {
+      "mobile": "http://localhost:8080/mobile.html",
+      "panel": "http://localhost:8080/panel.html",
+      "videoOverlay": "http://localhost:8080/video_overlay.html",
+      "component": "http://localhost:8080/video_component.html"
+    },
+    "views": {
+      "mobile": {
+        "viewerUrl": "http://localhost:8080/mobile.html"
+      },
+      "panel": {
+        "viewerUrl": "http://localhost:8080/panel.html",
+        "height": 300,
+        "canLinkExternalContent": false
+      },
+      "videoOverlay": {
+        "viewerUrl": "http://localhost:8080/video_overlay.html",
+        "canLinkExternalContent": false
+      },
+      "component": {
+        "viewerUrl": "http://localhost:8080/video_component.html",
+        "aspectWidth": 0,
+        "aspectHeight": 0,
+        "aspectRatioX": 300,
+        "aspectRatioY": 200,
+        "autoscale": true,
+        "scalePixels": 1024,
+        "targetHeight": 4000,
+        "size": 0,
+        "zoom": false,
+        "zoomPixels": 0,
+        "canLinkExternalContent": false
+      },
+      "config": {
+        "viewerUrl": "http://localhost:8080/config.html",
+        "canLinkExternalContent": false
+      }
+    },
+    "whitelistedConfigUrls": [],
+    "whitelistedPanelUrls": []
+  },
+  "frontendCommand": "",
+  "frontendFolderName": "",
+  "name": "hackathon2019",
+  "version": 1
+}
