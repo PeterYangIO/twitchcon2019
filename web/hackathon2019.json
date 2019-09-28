@@ -18,29 +18,6 @@
   ],
   "extensionViews": [
     {
-      "id": "1",
-      "label": "",
-      "channelId": "59757619",
-      "configurationAnchor": "panel",
-      "displayChannelName": "solidghost1",
-      "type": "panel",
-      "features": {
-        "isBitsEnabled": false,
-        "isChatEnabled": false,
-        "isSubscriptionStatusAvailable": false
-      },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Portrait",
-      "frameSize": {
-        "width": 1280,
-        "height": 720
-      }
-    },
-    {
       "id": "2",
       "label": "",
       "channelId": "59757619",
@@ -61,52 +38,6 @@
       "frameSize": {
         "width": 854,
         "height": 480
-      }
-    },
-    {
-      "id": "3",
-      "label": "",
-      "channelId": "59757619",
-      "configurationAnchor": "panel",
-      "displayChannelName": "solidghost1",
-      "type": "component",
-      "features": {
-        "isBitsEnabled": false,
-        "isChatEnabled": false,
-        "isSubscriptionStatusAvailable": false
-      },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Portrait",
-      "frameSize": {
-        "width": 854,
-        "height": 480
-      }
-    },
-    {
-      "id": "4",
-      "label": "",
-      "channelId": "59757619",
-      "configurationAnchor": "panel",
-      "displayChannelName": "solidghost1",
-      "type": "mobile",
-      "features": {
-        "isBitsEnabled": false,
-        "isChatEnabled": false,
-        "isSubscriptionStatusAvailable": false
-      },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Portrait",
-      "frameSize": {
-        "width": 375,
-        "height": 822
       }
     }
   ],
