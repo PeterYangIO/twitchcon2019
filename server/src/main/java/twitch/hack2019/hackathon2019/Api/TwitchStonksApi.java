@@ -161,8 +161,8 @@ public class TwitchStonksApi {
         }
         else
         {
-            updateUserPoints(streamer,user,points+cost);
-            sprepo.updateStockAmount(streamer,user,emote,getStockamount(streamer,user,emote) + amount);
+            updateUserPoints(streamer,user,points - cost);
+            sprepo.updateStockAmount(streamer,user,emote,getStockamount(streamer,user,emote) - amount);
             return new ResponseEntity<>("Success",header,HttpStatus.OK);
         }
 

@@ -14,7 +14,8 @@ export default class TradeStonk extends React.Component {
             tradingMode: TRADING_MODE.OFF
         }
 
-        this._setTradingMode = this._setTradingMode.bind(this)
+        this._setTradingMode = this._setTradingMode.bind(this);
+        this.dialogRef = React.createRef();
     }
 
     render() {
@@ -44,6 +45,7 @@ export default class TradeStonk extends React.Component {
                             <StonkDialogContent
                                 emotes={this.props.emotes}
                                 points={this.props.points}
+                                ref={this.dialogRef}
                                 setTradingMode={this._setTradingMode}
                                 stonk={this.props.stonk}
                                 tradingMode={this.state.tradingMode}
@@ -52,7 +54,10 @@ export default class TradeStonk extends React.Component {
                         <DialogActions>
                             <StonkDialogAction
                                 closeDialog={this.props.closeDialog}
+                                dialog={this.dialogRef}
+                                refreshData={this.props.refreshData}
                                 setTradingMode={this._setTradingMode}
+                                stonk={this.props.stonk}
                                 tradingMode={this.state.tradingMode}
                             />
                         </DialogActions>

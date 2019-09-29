@@ -1,6 +1,7 @@
 import React from 'react'
 import TRADING_MODE from '../enums/TRADING_MODE'
 import { Button } from '@material-ui/core'
+import Trade from "../api/Trade";
 
 export default class StonkDialogAction extends React.Component {
     constructor(props) {
@@ -68,12 +69,26 @@ export default class StonkDialogAction extends React.Component {
         }
     }
 
-    _confirmBuy() {
+    async _confirmBuy() {
+        await Trade.buyStocks(
+            window.localStorage.getItem("channelId"),
+            window.localStorage.getItem("userId"),
+            this.props.dialog.current.state.shares,
+            this.props.stonk.emote
+        );
+        await this.props.refreshData();
         this.props.setTradingMode(TRADING_MODE.OFF);
         this.props.closeDialog();
     }
     
-    _confirmSell() {
+    async _confirmSell() {
+        await Trade.sellStocks(
+            window.localStorage.getItem("channelId"),
+            window.localStorage.getItem("userId"),
+            this.props.dialog.current.state.shares,
+            this.props.stonk.emote
+        );
+        await this.props.refreshData();
         this.props.setTradingMode(TRADING_MODE.OFF);
         this.props.closeDialog();
     }

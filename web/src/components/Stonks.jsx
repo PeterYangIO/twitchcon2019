@@ -13,9 +13,29 @@ export default class Stonks extends React.Component {
             points: undefined,
             portfolio: undefined
         };
+
+        this.getData = this.getData.bind(this);
     }
 
     async componentDidMount() {
+        await this.getData();
+    }
+
+    render() {
+        return (
+            <main>
+                <StonksHeader points={this.state.points}/>
+                <StonksBody
+                    emotes={this.state.emotes}
+                    points={this.state.points}
+                    portfolio={this.state.portfolio}
+                    refreshData={this.getData}
+                />
+            </main>
+        )
+    }
+
+    async getData() {
         const channelId = window.localStorage.getItem("channelId");
         const userId = window.localStorage.getItem("userId");
         const promiseData = await Promise.all([
@@ -37,19 +57,6 @@ export default class Stonks extends React.Component {
                 item.cost = Math.round(emotePriceMap[item.emote] * 100);
                 return item;
             })
-        })
-    }
-
-    render() {
-        return (
-            <main>
-                <StonksHeader points={this.state.points}/>
-                <StonksBody
-                    emotes={this.state.emotes}
-                    points={this.state.points}
-                    portfolio={this.state.portfolio}
-                />
-            </main>
-        )
+        });
     }
 }

@@ -61,6 +61,7 @@ export default class StonksBody extends React.Component {
                     isOpen={Boolean(this.state.selectedStonk)}
                     onClose={this._handleClose}
                     points={this.props.points}
+                    refreshData={this.props.refreshData}
                     stonk={this.state.selectedStonk}
                 />
             </div>
