@@ -9,8 +9,12 @@ export default class StonkDialogContent extends React.Component {
         super(props);
 
         this.state = {
-
+            shares: 1
         }
+    }
+
+    get totalValue() {
+        return this.props.stonk.cost * this.props.stonk.numberofstocks;
     }
 
     render() {
@@ -26,7 +30,7 @@ export default class StonkDialogContent extends React.Component {
                         />
                     </div>
                     <Typography>
-                        You have <span style={{ fontWeight: 'bold' }}>6</span> shares at a value of <span style={{ fontWeight: 'bold' }}>420</span> each for a total of <span style={{ fontWeight: 'bold' }}>1000.</span>
+                        You have <span style={{ fontWeight: 'bold' }}>{this.props.stonk.numberofstocks}</span> shares at a value of <span style={{ fontWeight: 'bold' }}>{this.props.stonk.cost}</span> each for a total of <span style={{ fontWeight: 'bold' }}>{this.totalValue}.</span>
                     </Typography>
                 </div>
             )
@@ -35,22 +39,34 @@ export default class StonkDialogContent extends React.Component {
             return (
                 <div>
                     <div className="trade-row">
-                        <div>Shares</div>
+                        <div>
+                            <Typography>Shares</Typography>
+                        </div>
                         <div>
                             <TextField
                                 id="shares"
                                 margin="dense"
+                                onChange={(e) => this.setState({shares: e.target.value})}
                                 variant="outlined"
+                                value={this.state.shares}
                             />
                         </div>
                     </div>
                     <div className="trade-row">
-                        <div>Market price</div>
-                        <div>430</div>
+                        <div>
+                            <Typography>Market price</Typography>
+                        </div>
+                        <div>
+                            <Typography>{this.props.stonk.cost}</Typography>
+                        </div>
                     </div>
                     <div className="trade-row">
-                        <div>Total cost</div>
-                        <div>100</div>
+                        <div>
+                            <Typography>Total cost</Typography>
+                        </div>
+                        <div>
+                            <Typography>{this.props.stonk.cost * this.state.shares}</Typography>
+                        </div>
                     </div>
                     <Divider />
                     <div
@@ -62,7 +78,7 @@ export default class StonkDialogContent extends React.Component {
                         <Typography
                             variant="caption"
                         >
-                            300 points available
+                            {this.props.points} points available
                         </Typography>
                     </div>
                 </div>
@@ -72,22 +88,34 @@ export default class StonkDialogContent extends React.Component {
             return (
                 <div>
                     <div className="trade-row">
-                        <div>Shares</div>
+                        <div>
+                            <Typography>Shares</Typography>
+                        </div>
                         <div>
                             <TextField
                                 id="shares"
                                 margin="dense"
+                                onChange={(e) => this.setState({shares: e.target.value})}
                                 variant="outlined"
+                                value={this.state.shares}
                             />
                         </div>
                     </div>
                     <div className="trade-row">
-                        <div>Market price</div>
-                        <div>430</div>
+                        <div>
+                            <Typography>Market price</Typography>
+                        </div>
+                        <div>
+                            <Typography>{this.props.stonk.cost}</Typography>
+                        </div>
                     </div>
                     <div className="trade-row">
-                        <div>Total gain</div>
-                        <div>100</div>
+                        <div>
+                            <Typography>Total gain</Typography>
+                        </div>
+                        <div>
+                            <Typography>{this.props.stonk.cost * this.state.shares}</Typography>
+                        </div>
                     </div>
                     <Divider />
                     <div
@@ -99,7 +127,7 @@ export default class StonkDialogContent extends React.Component {
                         <Typography
                             variant="caption"
                         >
-                            3 shares available
+                            {this.props.stonk.numberofstocks} share{this.props.stonk.numberofstocks === 1 ? "" : "s"} available
                         </Typography>
                     </div>
                 </div>

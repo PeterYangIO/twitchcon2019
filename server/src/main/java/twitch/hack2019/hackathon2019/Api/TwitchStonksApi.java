@@ -42,8 +42,8 @@ public class TwitchStonksApi {
     @RequestMapping("/generate")
     public void generate()
     {
-        String streamerId = "114476906";
-        String userid = "derp1";
+        String streamerId = "269532505";
+        String userid = "269532505";
 
         sprepo.deleteAll();
         svrepo.deleteAll();
@@ -74,6 +74,12 @@ public class TwitchStonksApi {
     public List<StocksPort> getPortfolio (@RequestParam String streamer, @RequestParam String user)
     {
         return sprepo.getPorfolio(streamer, user);
+    }
+
+    @GetMapping("/getstockprices")
+    public List<StockValue> geteValues(@RequestParam String streamer)
+    {
+        return svrepo.getAllValues(streamer);
     }
 
     @GetMapping("/getpoints")

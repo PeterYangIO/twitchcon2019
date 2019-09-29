@@ -43,6 +43,7 @@ export default class TradeStonk extends React.Component {
                         <DialogContent>
                             <StonkDialogContent
                                 emotes={this.props.emotes}
+                                points={this.props.points}
                                 setTradingMode={this._setTradingMode}
                                 stonk={this.props.stonk}
                                 tradingMode={this.state.tradingMode}

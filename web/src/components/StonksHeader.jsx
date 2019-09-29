@@ -8,7 +8,13 @@ export default class StonksHeader extends React.Component {
         return (
             <AppBar position='sticky'>
                 <Toolbar>
-                    <Typography align='center' variant="h6" style={{width: "100%"}}>🦀📈 STONKS 📈🦀</Typography>
+                    <Typography align='center' variant="h6" style={{width: "100%"}}>
+                        {
+                            this.props.points === undefined
+                                ? "Loading stonks..."
+                                : `${this.props.points} point${this.props.points === 1 ? "" : "s"}`
+                        }
+                    </Typography>
                 </Toolbar>
             </AppBar>
         )

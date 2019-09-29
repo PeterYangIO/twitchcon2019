@@ -8,18 +8,11 @@ export default class StonksBody extends React.Component {
         super(props);
 
         this.state = {
-            emotes: {},
             selectedStonk: null
         }
 
         this._handleClose = this._handleClose.bind(this)
         this._selectRow = this._selectRow.bind(this)
-    }
-
-    async componentDidMount() {
-        this.setState({
-            emotes: await Emote.getAllEmotes(window.localStorage.getItem("channelId"))
-        })
     }
 
     render() {
@@ -29,34 +22,8 @@ export default class StonksBody extends React.Component {
                     <Table>
                         <TableBody>
                             {
-                                [
-                                    {
-                                        emote: "LUL",
-                                        owned: 10,
-                                        cost: 300
-                                    },
-                                    {
-                                        emote: "PogChamp",
-                                        owned: 3,
-                                        cost: 156
-                                    },
-                                    {
-                                        emote: "4Head",
-                                        owned: 4,
-                                        cost: 444
-                                    },
-                                    {
-                                        emote: "Kappa",
-                                        owned: 6,
-                                        cost: 341
-                                    },
-                                    {
-                                        emote: "TriHard",
-                                        owned: 1,
-                                        cost: 2
-                                    }
-                                ].map((item, index) => {
-                                    const emoteImage = this.state.emotes[item.emote] ? this.state.emotes[item.emote].id : "";
+                                this.props.portfolio && this.props.portfolio.map((item, index) => {
+                                    const emoteImage = this.props.emotes[item.emote] ? this.props.emotes[item.emote].id : "";
 
                                     return (
                                         <TableRow
@@ -78,7 +45,7 @@ export default class StonksBody extends React.Component {
                                                     {item.cost} pts
                                                 </Typography>
                                                 <Typography variant='caption'>
-                                                    {item.owned} share{item.owned === 1 ? '' : 's'}
+                                                    {item.numberofstocks} share{item.numberofstocks === 1 ? '' : 's'}
                                                 </Typography>
                                             </TableCell>
                                         </TableRow>
@@ -90,9 +57,10 @@ export default class StonksBody extends React.Component {
                 </Paper>
                 <TradeStonk
                     closeDialog={this._handleClose}
-                    emotes={this.state.emotes}
+                    emotes={this.props.emotes}
                     isOpen={Boolean(this.state.selectedStonk)}
                     onClose={this._handleClose}
+                    points={this.props.points}
                     stonk={this.state.selectedStonk}
                 />
             </div>
