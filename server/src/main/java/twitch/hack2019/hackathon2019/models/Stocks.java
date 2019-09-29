@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class StocksDto {
+public class Stocks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class StocksDto {
     String Emote;
     int NumberofStocks;
 
-    public StocksDto(int userId, String emote, int numberofStocks) {
+    public Stocks(int userId, String emote, int numberofStocks) {
         UserId = userId;
         Emote = emote;
         NumberofStocks = numberofStocks;

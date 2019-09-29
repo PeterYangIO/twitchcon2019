@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class UsageDto {
+public class Usage {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class UsageDto {
     int EId;
     double UsageRate;
 
-    public UsageDto(int StreamerId, int EId, double usageRate) {
+    public Usage(int StreamerId, int EId, double usageRate) {
         this.StreamerId = StreamerId;
         this.EId = EId;
         UsageRate = usageRate;

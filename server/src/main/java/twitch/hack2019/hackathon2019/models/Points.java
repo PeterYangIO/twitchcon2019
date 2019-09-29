@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PointsDto {
+public class Points {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class PointsDto {
     String UserId;
     int Points;
 
-    public PointsDto(int StreamerId, String userId, int points) {
+    public Points(int StreamerId, String userId, int points) {
         this.StreamerId = StreamerId;
         UserId = userId;
         Points = points;

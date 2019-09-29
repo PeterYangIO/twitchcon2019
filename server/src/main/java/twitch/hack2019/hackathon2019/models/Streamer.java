@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class StreamerDto {
+public class Streamer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,7 +14,7 @@ public class StreamerDto {
 
     String Streamer;
 
-    public StreamerDto(String streamer) {
+    public Streamer(String streamer) {
         Streamer = streamer;
     }
 

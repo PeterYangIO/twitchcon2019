@@ -2,9 +2,8 @@ package twitch.hack2019.hackathon2019.Api;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import twitch.hack2019.hackathon2019.models.StreamerDto;
+import twitch.hack2019.hackathon2019.models.Streamer;
 import twitch.hack2019.hackathon2019.repo.StreamerRepo;
 
 @RestController
@@ -21,9 +20,9 @@ public class TwitchStonksApi {
     }
 
     @PostMapping("/addstreamer")
-    public StreamerDto addStreamer(@RequestParam String body)
+    public Streamer addStreamer(@RequestParam String body)
     {
-        return sRepo.save(new StreamerDto(body));
+        return sRepo.save(new Streamer(body));
     }
 
 }
