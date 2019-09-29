@@ -18,6 +18,6 @@ public interface StockValueRepo extends JpaRepository<StockValue, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE stock_Value SET value_rate=?4 WHERE streamer = ?1 AND user = ?2 AND emote=?3",nativeQuery = true)
-    void updateEmoteValue(String streamer, String user, String emote, double value);
+    @Query(value = "UPDATE stock_Value SET value_rate=?3 WHERE streamer = ?1 AND emote=?2",nativeQuery = true)
+    void updateEmoteValue(String streamer, String emote, double value);
 }

@@ -1,9 +1,7 @@
 package twitch.hack2019.hackathon2019.Api;
 
 
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.config.RepositoryNameSpaceHandler;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +13,8 @@ import twitch.hack2019.hackathon2019.repo.PointsRepo;
 import twitch.hack2019.hackathon2019.repo.StockValueRepo;
 import twitch.hack2019.hackathon2019.repo.StocksPortRepo;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -165,7 +162,19 @@ public class TwitchStonksApi {
             sprepo.updateStockAmount(streamer,user,emote,getStockamount(streamer,user,emote) - amount);
             return new ResponseEntity<>("Success",header,HttpStatus.OK);
         }
-
     }
 
+    @PostMapping("/receiveemotefrequency")
+    public ResponseEntity<String> receiveEmoteFrequency(@RequestParam String streamer, @RequestParam Map<String, Integer> data) {
+        int total = 0;
+        for (Integer value : data.values()) {
+            total += value;
+        }
+        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+            String emote = entry.getKey();
+            Integer count = entry.getValue();
+            svrepo.updateEmoteValue(streamer, emote, total == 0 ? 0 : (float)count / total);
+        }
+        return new ResponseEntity<>("Success", new HttpHeaders(), HttpStatus.OK);
+    }
 }
