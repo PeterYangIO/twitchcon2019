@@ -29,3 +29,11 @@ def get_global_emotes():
     glob_emotes = {j[emote]["code"] : j[emote]["id"] for emote in j}
     return glob_emotes
 
+def get_all_emotes(channel_id):
+    return _merge(
+        get_chan_emotes(channel_id),
+        get_global_emotes()
+    )
+
+def _merge(dict1, dict2):
+    return {**dict1, **dict2}

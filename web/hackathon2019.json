@@ -2,23 +2,10 @@
   "allowHttpBackend": false,
   "backendCommand": "",
   "backendFolderName": "",
-  "certificateExceptions": [
-    {
-      "isAllowed": false,
-      "isEphemeral": false,
-      "isOrigin": true,
-      "value": "https://localhost:8080"
-    },
-    {
-      "isAllowed": false,
-      "isEphemeral": false,
-      "isOrigin": false,
-      "value": "https://localhost:8080/panel.html?anchor=panel&language=en&locale=en-US&mode=viewer&state=testing&platform=web"
-    }
-  ],
+  "certificateExceptions": [],
   "extensionViews": [
     {
-      "id": "2",
+      "id": "1",
       "label": "",
       "channelId": "59757619",
       "configurationAnchor": "panel",
