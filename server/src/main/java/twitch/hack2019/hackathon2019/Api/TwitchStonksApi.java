@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import twitch.hack2019.hackathon2019.models.FrequencyDto;
 import twitch.hack2019.hackathon2019.models.Point;
 import twitch.hack2019.hackathon2019.models.StockValue;
 import twitch.hack2019.hackathon2019.models.StocksPort;
@@ -13,6 +14,7 @@ import twitch.hack2019.hackathon2019.repo.PointsRepo;
 import twitch.hack2019.hackathon2019.repo.StockValueRepo;
 import twitch.hack2019.hackathon2019.repo.StocksPortRepo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -165,15 +167,16 @@ public class TwitchStonksApi {
     }
 
     @PostMapping("/receiveemotefrequency")
-    public ResponseEntity<String> receiveEmoteFrequency(@RequestParam String streamer, @RequestParam Map<String, Integer> data) {
+    public ResponseEntity<String> receiveEmoteFrequency(@RequestBody FrequencyDto frequencyDto) {
         int total = 0;
-        for (Integer value : data.values()) {
+        for (Integer value : frequencyDto.getData().values()) {
             total += value;
         }
-        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+        for (Map.Entry<String, Integer> entry : frequencyDto.getData().entrySet()) {
             String emote = entry.getKey();
-            Integer count = entry.getValue();
-            svrepo.updateEmoteValue(streamer, emote, total == 0 ? 0 : (float)count / total);
+            int count = entry.getValue();
+            float frequency = total == 0 ? 0 : (float)count / total;
+            svrepo.updateEmoteValue(frequencyDto.getStreamer(), emote, frequency);
         }
         return new ResponseEntity<>("Success", new HttpHeaders(), HttpStatus.OK);
     }

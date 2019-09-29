@@ -58,12 +58,12 @@ class IRCReader:
                             for word in words:
                                 if word in self.all_emotes:
                                     self.emote_count[word] += 1
-                
+
                 requests.post(
                     url="http://localhost:8000/receiveemotefrequency",
-                    data={
-                        streamer: self.channel_id,
-                        data: self.emote_count
+                    json={
+                        "streamer": self.channel_id,
+                        "data": self.emote_count
                     }
                 )
             except socket.error:
