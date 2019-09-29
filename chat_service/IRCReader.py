@@ -1,18 +1,20 @@
 import emotes
 import queue
 import re
+import requests
 import socket
 
 HOST = "irc.chat.twitch.tv"
 PORT = 6667
-CHAN = "#kabajiow"
+CHAN = "#a_seagull"
 NICK = "testing"
 PASS = ""
 
 class IRCReader:
     def __init__(self, channel_id, queue_size=100):
-        all_emotes = emotes.get_all_emotes(channel_id)
-        self.emote_count = {emote: 0 for emote in all_emotes}
+        self.channel_id = channel_id
+        self.all_emotes = emotes.get_all_emotes(channel_id)
+        self.emote_count = {emote: 0 for emote in self.all_emotes}
         self.total_seen = 0
         self.queue_size = queue_size
     
@@ -40,14 +42,12 @@ class IRCReader:
                         if line[1] == 'PRIVMSG':
                             sender = get_sender(line[0])
                             message = get_message(line)
-                            parse_message(message)
 
-                            if msg_strm.qsize() == 10:
+                            if msg_strm.qsize() == self.queue_size:
                                 removed = msg_strm.get()
                                 words = removed.split()
                                 for word in words:
-                                    if word in all_emotes:
-                                        self.total_seen -= 1
+                                    if word in self.all_emotes:
                                         self.emote_count[word] -= 1
 
                             # add to queue
@@ -56,16 +56,16 @@ class IRCReader:
                             # count number of occurrences of emotes
                             words = message.split()
                             for word in words:
-                                if word in all_emotes:
-                                    self.total_seen += 1
+                                if word in self.all_emotes:
                                     self.emote_count[word] += 1
-                            i += 1
-                            print(self.total_seen)
-                            print(self.emote_count)
-                            print("message number " + str(i))
-
-                            print(sender + ": " + message)
-
+                
+                requests.post(
+                    url="http://localhost:8000/receiveemotefrequency",
+                    data={
+                        streamer: self.channel_id,
+                        data: self.emote_count
+                    }
+                )
             except socket.error:
                 print("Socket died")
 
@@ -93,21 +93,3 @@ def get_message(msg):
         i += 1
     result = result.lstrip(':')
     return result
-
-
-def parse_message(msg):
-    if len(msg) >= 1:
-        msg = msg.split(' ')
-        options = {'!test': command_test,
-                   '!asdf': command_asdf}
-        if msg[0] in options:
-            options[msg[0]]()
-
-# --------------------------------------------- Start Command Functions --------------------------------------------
-def command_test():
-    send_message(CHAN, 'testing some stuff')
-
-
-def command_asdf():
-    send_message(CHAN, 'asdfster')
-# --------------------------------------------- End Command Functions ----------------------------------------------
