@@ -7,7 +7,7 @@
     {
       "id": "1",
       "label": "",
-      "channelId": "59757619",
+      "channelId": "265737932",
       "configurationAnchor": "panel",
       "displayChannelName": "solidghost1",
       "type": "video_overlay",
@@ -23,8 +23,8 @@
       "role": "Broadcaster",
       "orientation": "Portrait",
       "frameSize": {
-        "width": 854,
-        "height": 480
+        "width": 1024,
+        "height": 576
       }
     }
   ],
