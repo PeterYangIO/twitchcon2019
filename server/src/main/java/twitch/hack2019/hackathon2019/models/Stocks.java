@@ -1,9 +1,6 @@
 package twitch.hack2019.hackathon2019.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Stocks {
@@ -12,11 +9,14 @@ public class Stocks {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int StockId;
 
-    int UserId;
+    String StreamerId;
+
+    String UserId;
     String Emote;
     int NumberofStocks;
 
-    public Stocks(int userId, String emote, int numberofStocks) {
+    public Stocks(String streamerId, String userId, String emote, int numberofStocks) {
+        StreamerId = streamerId;
         UserId = userId;
         Emote = emote;
         NumberofStocks = numberofStocks;
@@ -30,11 +30,19 @@ public class Stocks {
         StockId = stockId;
     }
 
-    public int getUserId() {
+    public String getStreamerId() {
+        return StreamerId;
+    }
+
+    public void setStreamerId(String streamerId) {
+        StreamerId = streamerId;
+    }
+
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         UserId = userId;
     }
 
