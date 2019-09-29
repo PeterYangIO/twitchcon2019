@@ -1,7 +1,10 @@
 import React from 'react'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 import Authentication from '../../util/Authentication/Authentication'
 
 import './App.css'
+import Stonks from '../Stonks'
 
 export default class App extends React.Component{
     constructor(props){
@@ -75,13 +78,17 @@ export default class App extends React.Component{
         if(this.state.finishedLoading && this.state.isVisible){
             return (
                 <div className="App">
-                    <div className={this.state.theme === 'light' ? 'App-light' : 'App-dark'} >
-                        <p>Hello world!</p>
-                        <p>My token is: {this.Authentication.state.token}</p>
-                        <p>My opaque ID is {this.Authentication.getOpaqueId()}.</p>
-                        <div>{this.Authentication.isModerator() ? <p>I am currently a mod, and here's a special mod button <input value='mod button' type='button'/></p>  : 'I am currently not a mod.'}</div>
-                        <p>I have {this.Authentication.hasSharedId() ? `shared my ID, and my user_id is ${this.Authentication.getUserId()}` : 'not shared my ID'}.</p>
-                    </div>
+                    <ThemeProvider
+                        theme={
+                            createMuiTheme({
+                                palette: {
+                                    type: this.state.theme
+                                }
+                            })
+                        }
+                    >
+                        <Stonks/>
+                    </ThemeProvider>
                 </div>
             )
         }else{
