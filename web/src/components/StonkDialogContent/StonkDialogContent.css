@@ -20,3 +20,26 @@
 .trade-row > div:nth-of-type(2) input {
     text-align: right;
 }
+
+.stonk-img {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.stonk-img img {
+    height: 4rem;
+}
+
+.rotate {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

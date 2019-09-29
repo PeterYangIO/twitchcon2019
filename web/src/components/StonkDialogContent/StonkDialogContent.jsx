@@ -2,6 +2,7 @@ import React from 'react'
 import TRADING_MODE from '../../enums/TRADING_MODE';
 import { Typography, TextField, Divider } from '@material-ui/core';
 import "./StonkDialogContent.css";
+import Emote from '../../util/Emote';
 
 export default class StonkDialogContent extends React.Component {
     constructor(props) {
@@ -14,10 +15,20 @@ export default class StonkDialogContent extends React.Component {
 
     render() {
         if (this.props.tradingMode === TRADING_MODE.OFF) {
+            const emoteImage = this.props.emotes[this.props.stonk.emote] ? this.props.emotes[this.props.stonk.emote].id : "";
             return (
-                <Typography>
-                    You have <span style={{ fontWeight: 'bold' }}>6</span> shares at a value of <span style={{ fontWeight: 'bold' }}>420</span> each for a total of <span style={{ fontWeight: 'bold' }}>1000.</span>
-                </Typography>
+                <div>
+                    <div className="stonk-img rotate">
+                        <img
+                            alt={this.props.stonk.emote}
+                            src={Emote.getEmoteImage(emoteImage)}
+                            title={this.props.stonk.emote}
+                        />
+                    </div>
+                    <Typography>
+                        You have <span style={{ fontWeight: 'bold' }}>6</span> shares at a value of <span style={{ fontWeight: 'bold' }}>420</span> each for a total of <span style={{ fontWeight: 'bold' }}>1000.</span>
+                    </Typography>
+                </div>
             )
         }
         else if (this.props.tradingMode === TRADING_MODE.BUY) {

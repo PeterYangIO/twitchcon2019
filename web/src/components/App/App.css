@@ -16,7 +16,7 @@ html, body {
 }
 
 .App {
-    max-width: 450px;
+    max-width: 400px;
     height: 100%;
     padding: 5rem 7rem 5rem 0;
 }
@@ -24,4 +24,9 @@ html, body {
 .App main {
     height: 100%;
     overflow-y: auto;
+}
+
+.emote {
+    display: block;
+    height: 2rem;
 }

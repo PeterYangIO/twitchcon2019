@@ -42,7 +42,9 @@ export default class TradeStonk extends React.Component {
                         </MuiDialogTitle>
                         <DialogContent>
                             <StonkDialogContent
+                                emotes={this.props.emotes}
                                 setTradingMode={this._setTradingMode}
+                                stonk={this.props.stonk}
                                 tradingMode={this.state.tradingMode}
                             />
                         </DialogContent>

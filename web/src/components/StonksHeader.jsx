@@ -8,7 +8,7 @@ export default class StonksHeader extends React.Component {
         return (
             <AppBar position='sticky'>
                 <Toolbar>
-                    <Typography variant="h6">🦀📈 STONKS 📈🦀</Typography>
+                    <Typography align='center' variant="h6" style={{width: "100%"}}>🦀📈 STONKS 📈🦀</Typography>
                 </Toolbar>
             </AppBar>
         )
