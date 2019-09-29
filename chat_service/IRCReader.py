@@ -8,10 +8,11 @@ HOST = "irc.chat.twitch.tv"
 PORT = 6667
 CHAN = "#a_seagull"
 NICK = "testing"
-PASS = "oauth:ybe1cm0bcyxfjupde96u83nx1yeebm"
+PASS = ""
 
 class IRCReader:
     def __init__(self, channel_id, queue_size=100):
+        self.channel_id = channel_id
         self.all_emotes = emotes.get_all_emotes(channel_id)
         self.emote_count = {emote: 0 for emote in self.all_emotes}
         self.total_seen = 0
@@ -58,7 +59,13 @@ class IRCReader:
                                 if word in self.all_emotes:
                                     self.emote_count[word] += 1
                 
-                requests.post(url="", data=self.emote_count)
+                requests.post(
+                    url="http://localhost:8000/receiveemotefrequency",
+                    data={
+                        streamer: self.channel_id,
+                        data: self.emote_count
+                    }
+                )
             except socket.error:
                 print("Socket died")
 
