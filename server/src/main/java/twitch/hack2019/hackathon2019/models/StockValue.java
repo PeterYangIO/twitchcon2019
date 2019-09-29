@@ -9,13 +9,15 @@ public class StockValue {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int ValueId;
 
-    String StreamerId;
+    String Streamer;
 
     String Emote;
     double ValueRate;
 
+    public StockValue(){}
+
     public StockValue(String streamerId, String emote, double valueRate) {
-        StreamerId = streamerId;
+        Streamer = streamerId;
         Emote = emote;
         ValueRate = valueRate;
     }
@@ -29,11 +31,11 @@ public class StockValue {
     }
 
     public String getStreamerId() {
-        return StreamerId;
+        return Streamer;
     }
 
     public void setStreamerId(String streamerId) {
-        StreamerId = streamerId;
+        Streamer = streamerId;
     }
 
     public String getEmote() {

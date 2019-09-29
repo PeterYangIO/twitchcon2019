@@ -6,19 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Points {
+public class Point {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int PId;
     
-    int StreamerId;
-    String UserId;
+    String Streamer;
+    String User;
     int Points;
 
-    public Points(int StreamerId, String userId, int points) {
-        this.StreamerId = StreamerId;
-        UserId = userId;
+    public Point(){}
+
+    public Point(String streamer, String user, int points) {
+        Streamer = streamer;
+        User = user;
         Points = points;
     }
 
@@ -30,20 +32,20 @@ public class Points {
         this.PId = PId;
     }
 
-    public int getStreamerId() {
-        return StreamerId;
+    public String getStreamer() {
+        return Streamer;
     }
 
-    public void setStreamerId(int StreamerId) {
-        this.StreamerId = StreamerId;
+    public void setStreamer(String streamer) {
+        Streamer = streamer;
     }
 
-    public String getUserId() {
-        return UserId;
+    public String getUser() {
+        return User;
     }
 
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setUser(String user) {
+        User = user;
     }
 
     public int getPoints() {
