@@ -3,12 +3,13 @@ import queue
 import re
 import requests
 import socket
+import time
 
 HOST = "irc.chat.twitch.tv"
 PORT = 6667
-CHAN = "#a_seagull"
+CHAN = "#esl_csgo"
 NICK = "testing"
-PASS = ""
+PASS = "oauth:get your own~"
 
 class IRCReader:
     def __init__(self, channel_id, queue_size=100):
@@ -66,7 +67,9 @@ class IRCReader:
                         "data": self.emote_count
                     }
                 )
-            except socket.error:
+                print("Alive...")
+                time.sleep(1)
+            except:
                 print("Socket died")
 
 

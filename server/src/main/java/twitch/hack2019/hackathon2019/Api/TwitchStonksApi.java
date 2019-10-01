@@ -14,6 +14,7 @@ import twitch.hack2019.hackathon2019.repo.PointsRepo;
 import twitch.hack2019.hackathon2019.repo.StockValueRepo;
 import twitch.hack2019.hackathon2019.repo.StocksPortRepo;
 
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class TwitchStonksApi {
 
         svrepo.save(new StockValue(streamerId, "LUL", 20));
         svrepo.save(new StockValue(streamerId, "Kappa", 10));
-        svrepo.save(new StockValue(streamerId, "TTows", 30));
+        svrepo.save(new StockValue(streamerId, "TTours", 30));
         svrepo.save(new StockValue(streamerId, "VoHiYo", 5));
         svrepo.save(new StockValue(streamerId, "BlessRNG", 35));
 
@@ -168,6 +169,7 @@ public class TwitchStonksApi {
 
     @PostMapping("/receiveemotefrequency")
     public ResponseEntity<String> receiveEmoteFrequency(@RequestBody FrequencyDto frequencyDto) {
+
         int total = 0;
         for (Integer value : frequencyDto.getData().values()) {
             total += value;
@@ -176,7 +178,16 @@ public class TwitchStonksApi {
             String emote = entry.getKey();
             int count = entry.getValue();
             float frequency = total == 0 ? 0 : (float)count / total;
-            svrepo.updateEmoteValue(frequencyDto.getStreamer(), emote, frequency);
+            System.out.println(emote);
+            System.out.println(count);
+            System.out.println(frequency);
+            if(svrepo.checkexists(frequencyDto.getStreamer(),emote).size() == 0)
+            {
+                svrepo.save(new StockValue(frequencyDto.getStreamer(),emote, 100 * frequency));
+            }
+            else {
+                svrepo.updateEmoteValue(frequencyDto.getStreamer(), emote, 100* frequency);
+            }
         }
         return new ResponseEntity<>("Success", new HttpHeaders(), HttpStatus.OK);
     }

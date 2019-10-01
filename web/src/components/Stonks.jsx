@@ -15,10 +15,18 @@ export default class Stonks extends React.Component {
         };
 
         this.getData = this.getData.bind(this);
+        this._updateStonks = this._updateStonks.bind(this);
+
+        this.interval = null;
     }
 
     async componentDidMount() {
         await this.getData();
+        this.interval = window.setInterval(this._updateStonks, 500);
+    }
+
+    componentWillUnmount() {
+        window.clearInterval(this.interval);
     }
 
     render() {
@@ -45,18 +53,42 @@ export default class Stonks extends React.Component {
             Portfolio.getStocks(channelId)
         ]);
 
-        const emotePriceMap = {};
-        promiseData[3].forEach(price => {
-            emotePriceMap[price.emote] = price.valueRate;
+        const portfolioMap = {};
+        promiseData[2].forEach(p => {
+            portfolioMap[p.emote] = p
         });
 
         this.setState({
             emotes: promiseData[0],
             points: promiseData[1],
-            portfolio: promiseData[2].map(item => {
-                item.cost = Math.round(emotePriceMap[item.emote] * 100);
-                return item;
-            })
+            portfolio: promiseData[3]
+                .map(item => {
+                    item.cost = Math.round(item.valueRate * 100);
+                    item.numberofstocks = portfolioMap[item.emote] ? portfolioMap[item.emote].numberofstocks : 0;
+                    return item;
+                })
+                .sort((a, b) => b.cost - a.cost)
+        });
+    }
+
+    async _updateStonks() {
+        const channelId = window.localStorage.getItem("channelId");
+        const prices = await Portfolio.getStocks(channelId);
+
+        const priceMap = {};
+        prices.forEach(p => {
+            priceMap[p.emote] = Math.round(p.valueRate * 100)
+        });
+
+        this.setState((prevState) => {
+            return {
+                portfolio: prevState.portfolio
+                    .map(item => {
+                        item.cost = priceMap[item.emote];
+                        return item;
+                    })
+                    .sort((a, b) => b.cost - a.cost)
+            }
         });
     }
 }
